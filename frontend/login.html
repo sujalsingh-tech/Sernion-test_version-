@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f5f5f5;
+    }
+    .login-box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 350px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .login-box p {
+      text-align: center;
+      color: gray;
+    }
+    input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .btn {
+      width: 100%;
+      background: black;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .social-btn {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      background: white;
+    }
+    .social-btn img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+    .bottom-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .bottom-link a {
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    small {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <form class="login-box" method="POST" action="/login">
+    <h2>Welcome Back</h2>
+    <p>Sign into your account to continue</p>
+    
+    <label>Email address</label>
+    <input type="email" name="email" placeholder="Enter email address" required>
+
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Enter password" required>
+
+    <div style="text-align: right; font-size: 12px; margin-top: -10px; margin-bottom: 10px;">
+      <a href="#">Forgot password?</a>
+    </div>
+
+    <button class="btn" type="submit">Continue</button>
+
+    <p style="text-align: center; margin: 10px 0;">OR</p>
+
+    <!-- Google Button -->
+    <div class="social-btn">
+      <img src="Google_Icons-09-512.png" alt="Google logo">
+      Continue with Google
+    </div>
+
+    <!-- Facebook Button -->
+    <div class="social-btn">
+      <img src="Facebook_Logo_(2019).png" alt="Facebook logo">
+      Continue with Facebook
+    </div>
+
+    <div class="bottom-link">
+      Don't have an account? <a href="signup.html">Sign up</a>
+    </div>
+
+    <small>By continuing, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</small>
+  </form>
+</body>
+</html>
