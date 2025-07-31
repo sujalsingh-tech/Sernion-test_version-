@@ -10,17 +10,19 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      font-family: 'Inter', Arial, sans-serif;
     }
 
     body {
       background-color: #f8f8f8;
       padding: 20px;
+      font-family: 'Inter', Arial, sans-serif;
     }
 
     .container {
       max-width: 800px;
       margin: auto;
+      margin-top: 60px; /* Move box lower */
     }
 
     .top-bar {
@@ -36,8 +38,9 @@
     }
 
     .title {
-      font-size: 20px;
-      font-weight: bold;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     .steps {
@@ -79,11 +82,12 @@
       background-color: #ccc;
     }
     .data-section1{
-      margin-top: 20px;
-      padding: 15px;
+      margin-top: 40px;
+      padding: 25px;
       border: 1px solid #ccc;
-      border-radius: 10px;
-
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
     }
     .data-section {
       margin-top: 20px;
@@ -109,6 +113,8 @@
       margin-top:15px ;
     }
     .data-section h3 {
+      font-size: 20px;
+      font-weight: 600;
       margin-bottom: 10px;
     }
     .data-section h3 {
@@ -122,12 +128,37 @@
     }
 
     .data-types button {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: left;
       padding: 15px;
       border: 1px solid #ccc;
       border-radius: 10px;
       background-color: #fff;
       cursor: pointer;
-      text-align: left;
+      gap: 0;
+    }
+    .data-types button img {
+      height: 32px;
+      width: 32px;
+      margin-right: 16px;
+      vertical-align: middle;
+      margin-bottom: 0;
+    }
+    .data-label {
+      font-size: 1.18em;
+      font-weight: 700;
+      margin-bottom: 0;
+      display: block;
+    }
+    .data-desc {
+      font-size: 1.05em;
+      color: #555;
+      font-weight: 400;
+      margin-left: 0;
+      display: block;
     }
     /* svg section */
     .data-types button i {
@@ -169,28 +200,63 @@
       width: 100%;
       padding: 12px;
       margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      border: 1.5px solid #ccc;
+      border-radius: 10px;
       background-color: #fff;
       cursor: pointer;
       text-align: left;
+      font-size: 0.95em;
+      font-family: inherit;
     }
 
     .footer-buttons {
       display: flex;
-      justify-content: space-between;
-      margin-top: 30px;
+      justify-content: center;
+      gap: 560px;
+      margin-top: 20px;
     }
 
     .footer-buttons button {
-      padding: 10px 25px;
+      padding: 10px 32px;
+      font-size: 1em;
       background-color: black;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: background 0.2s;
     }
 
+    .footer-buttons button:hover {
+      background-color: #222;
+    }
+    .data-label {
+      font-size: 1.18em;
+      font-weight: 700;
+      vertical-align: middle;
+    }
+    .data-desc {
+      display: block;
+      font-size: 1.05em;
+      color: #555;
+      margin-top: 2px;
+      font-weight: 400;
+    }
+    .data-types button img {
+      display: inline-block;
+      vertical-align: middle;
+      margin-bottom: 2px;
+    }
+    .data-types button {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: left;
+    }
   </style>
 </head>
 <body>
@@ -216,23 +282,45 @@
       <p>Select the type of data and annotation method</p>
       <h5 class="data">Data Type</h5>
       <div class="data-types">
-        <button><i class="fa-regular fa-image"></i>Images <br><small>JPG, PNG, SVG files</small></button>
-        <button><span><h1>T</h1> Text<small>Documents, articles, reviews</small></button></span>
-        <button><i class="fa-solid fa-video"></i>Video <br><small>MP4, AVI, MOV files</small></button>
-        <button id="btn-audio"><i class="fa-solid fa-volume-high"></i> Audio <br><small>MP3, WAV, FLAC files</small></button>
+        <button>
+          <img src="../src/Image.png" alt="Images" style="height:32px;width:32px;margin-right:16px;vertical-align:middle;">
+          <div style="display:flex;flex-direction:column;align-items:flex-start;justify-content:center;">
+            <span class="data-label">Images</span>
+            <span class="data-desc">JPG, PNG, SVG files</span>
+          </div>
+        </button>
+        <button>
+          <img src="../src/Text.png" alt="Text" style="height:32px;width:32px;margin-right:16px;vertical-align:middle;">
+          <div style="display:flex;flex-direction:column;align-items:flex-start;justify-content:center;">
+            <span class="data-label">Text</span>
+            <span class="data-desc">Documents, articles, reviews</span>
+          </div>
+        </button>
+        <button>
+          <img src="../src/Video.png" alt="Video" style="height:32px;width:32px;margin-right:16px;vertical-align:middle;">
+          <div style="display:flex;flex-direction:column;align-items:flex-start;justify-content:center;">
+            <span class="data-label">Video</span>
+            <span class="data-desc">MP4, AVI, MOV files</span>
+          </div>
+        </button>
+        <button id="btn-audio">
+          <img src="../src/Audio.png" alt="Audio" style="height:32px;width:32px;margin-right:16px;vertical-align:middle;">
+          <div style="display:flex;flex-direction:column;align-items:flex-start;justify-content:center;">
+            <span class="data-label">Audio</span>
+            <span class="data-desc">MP3, WAV, FLAC files</span>
+          </div>
+        </button>
       </div>
     </div>
-    <h5 class="annotation">Annotation</h5>
-    <div class="annotation-types1">
 
     <div class="annotation-types">
+      <h3 class="annotation">Annotation Type</h3>
       <button class="annotation-btn" data-value="Audio Transcription">Audio Transcription - Convert speech to text</button>
       <button class="annotation-btn" data-value="Audio Classification">Audio Classification - Categorize audio content</button>
       <button class="annotation-btn" data-value="Speaker Identification">Speaker Identification - Identify different speakers</button>
     </div>
     </div>
     </div>
-
     <div class="footer-buttons">
       <button onclick="alert('Previous clicked')">Previous</button>
       <button id="nextBtn">Next</button>
