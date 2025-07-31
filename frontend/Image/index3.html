@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Project</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <style>
+  body {
+    font-family: 'Inter',Arial, sans-serif;
+    background: #f8f8f8;
+    margin: 0;
+    padding: 20px;
+  }
+  .container {
+    max-width: 800px;
+    margin: auto;
+    margin-top: 60px; 
+  }  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  .top-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .back-arrow {
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .steps {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 0 0;
+    width: 100%;
+    position: relative;
+  }
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 30px;
+  }
+  .step span {
+    background-color: #000;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    transition: background 0.2s;
+  }
+  .step.inactive span {
+    background-color: #ccc;
+    color: #fff;
+  }
+  .step-bar {
+    background-color: #e7e7e7;
+    height: 5px;
+    position: relative;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    margin-top: 18px;
+  }
+  .step-bar .progress {
+    width: 75%;
+    background: #111;
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.3s;
+  }
+  .card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .input-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .input-group input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+
+  .input-group button {
+    padding: 10px 15px;
+    background: black;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+  }
+ .email-list {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    }
+
+  .email {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    }
+  .footer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 580px;
+    margin-top: 20px;
+  }
+  .footer-buttons button {
+    padding: 10px 28px;
+    font-size: 1em;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+  }
+  .footer-buttons button:hover {
+    background-color: #222;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <div class="back-arrow">&larr;</div>
+      <div class="title">Create new project</div>
+    </div>
+    <div class="steps">
+      <div class="step active"><span>1</span></div>
+      <div class="step active"><span>2</span></div>
+      <div class="step active"><span>3</span></div>
+      <div class="step"><span>4</span></div>
+    </div>
+    <div class="step-bar">
+      <div class="progress"></div>
+    </div>
+
+    <div class="card">
+      <h3>Team & Settings</h3>
+      <p>Configure team access and project settings</p>
+
+      <h5>Team members</h5>
+      <div class="input-group">
+        <input type="email" id="emailInput" placeholder="Enter email address">
+        <button onclick="addEmail()">+</button>
+      </div>
+      <div class="email-list" id="emailList">  
+        <div id="emailPlaceholder" class="email"><i class='fa-regular fa-envelope'></i> <span>email address</span></div>
+      </div>
+    </div>
+
+    <div class="footer-buttons">
+        <!-- <button id="prevBtn">Previous</button> -->
+        <a href="index2.html"><button>Previous</button></a>
+        <!-- <button>Next</button> -->
+         <a href="index4.html"><button>Next</button></a>
+      </div>
+  </div>
+  <script>
+    function addEmail() {
+      const input = document.getElementById('emailInput');
+      const email = input.value.trim();
+      if (email) {
+        const list = document.getElementById('emailList');
+        const placeholder = document.getElementById('emailPlaceholder');
+        if (placeholder) placeholder.style.display = 'none';
+        const emailDiv = document.createElement('div');
+        emailDiv.className = 'email';
+        emailDiv.innerHTML = `<i class='fa-regular fa-envelope'></i> <span>${email}</span>`;
+        list.appendChild(emailDiv);
+        input.value = '';
+      }
+    }
+  </script>
+</body>
+</html>
