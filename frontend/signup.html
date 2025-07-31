@@ -1,223 +1,170 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Register</title>
+  <title>Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f1f1f1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      background-color: #f4f4f4;
       margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
-    h1 {
-  text-align: center;
-}
-h3 {
-  text-align: center;
-}
-    .form-container {
-      background: #fff;
-      padding: 50px 80px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    .container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 420px;
       width: 100%;
-      max-width: 400px;
-      gap:10px;
     }
-
-    .form-container h2 {
+    h2 {
       text-align: center;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
+    .sub-text {
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      font-size: 14px;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .input-icon {
+      display: flex;
+      align-items: center;
+      background-color: #f1f1f1;
+      padding: 10px;
+      border-radius: 6px;
+    }
+    .input-icon i {
+      margin-right: 10px;
+      font-size: 16px;
+    }
+    .input-icon input {
+      border: none;
+      background: transparent;
+      outline: none;
+      width: 100%;
+      font-size: 14px;
+    }
+    .primary-btn {
       width: 100%;
       padding: 12px;
-      margin: 10px 0 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .divider {
+      text-align: center;
+      margin: 20px 0;
+      color: #888;
       font-size: 14px;
     }
-
-    button[type="submit"] {
-      width: 100%;
-      height: 45px;
-      background: #000;
-      color: #fff;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button[type="submit"]:hover {
-      background: #333;
-    }
-
-    .or-divider {
-      text-align: center;
-      margin: 15px 0;
-      font-weight: 500;
-      color: #777;
-    }
-    
-
     .social-btn {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      gap: 25px;
-      margin-top: 10px;
-    }
-
-    .social-btn button {
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      padding: 10px;
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 15px;
-      width: 100%;
-      border: 3px solid #ccc;
-      border-radius: 30px;
-      padding: 10px;
-      font-size: 14px;
-      font-weight: 500;
-      background-color: #fff;
+      margin-bottom: 10px;
       cursor: pointer;
-      margin-bottom: 18px;
-      transition: background-color 0.3s ease;
+      background-color: #fff;
     }
-
-    .social-btn button:hover {
-      background-color: #eee;
-      
-    }
-
     .social-btn img {
-      width: 30px;
-      height: 30px;
+      width: 25px;
+      height: 25px;
+      margin-right: 10px;
+      border-radius: 50%;
     }
-
-    .footer {
+    .bottom-text {
       text-align: center;
-      margin-top: 15px;
-      font-size: 0.9em;
+      font-size: 13px;
+      margin-top: 20px;
     }
-
-    .footer a {
-      color: #007bff;
+    .bottom-text a {
+      font-weight: bold;
       text-decoration: none;
+      color: #000;
     }
-
-    .footer a:hover {
-      text-decoration: underline;
-    }
-
-    .error, .success {
+    .terms {
       text-align: center;
-      margin: 10px 0;
-      font-size: 0.9em;
+      font-size: 11px;
+      color: #555;
+      margin-top: 25px;
     }
-
-    .error {
-      color: red;
-    }
-
-    .success {
-      color: green;
+    .terms a {
+      font-weight: bold;
+      color: #000;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h1>Welcome</h1>
-    <h3>Create an account</h3>
-    <form id="registerForm">
-      <div> Full name</div>
-      <input type="text" id="full_name" placeholder="Enter your full name" required />
-      <div> Email</div>
-      <input type="email" id="email" placeholder="Enter your email" required />
-      <div> Password</div>
-      <input type="password" id="password" placeholder="Enter your password" required />
-      <div> Confirm password</div>
-      <input type="password" id="confirm_password" placeholder="Re-enter password" required />
-      <button type="submit">Continue</button>
-    </form>
+  <div class="container">
+    <h2>Welcome Back</h2>
+    <p class="sub-text">Sign into your account to continue</p>
 
-    <div class="or-divider">OR</div>
-
+    <div class="form-group">
+      <label>Full name</label>
+      <div class="input-icon">
+        <input type="text" placeholder="Enter your full name" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <div class="input-icon">
+        <input type="email" placeholder="Enter your email" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <div class="input-icon">
+        <input type="password" placeholder="Enter your password" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Confirm password</label>
+      <div class="input-icon">
+        <input type="password" placeholder="Re-enter password" required />
+      </div>
+    </div>
+    <a href="dashboard.html" class="primary-btn" style="display:block;text-align:center;text-decoration:none;">Continue</a>
+    <div class="divider">OR</div>
+      <div class="social-btn">
+    <img src="src/Google_Icons-09-512.png" alt="Google logo">
+    Continue with Google
+    </div>
     <div class="social-btn">
-      <div>
-      <button type="button" id="google-login">
-        <img src="/frontend/src/Google_Icons-09-512.png" alt="Google Logo" >
-        Continue with Google
-      </button>
-   
-      <button type="button" id="facebook-login">
-        <img src="/frontend/src/Facebook_Logo_(2019).png" alt="Facebook Logo">
-        Continue with Facebook
-      </button>
+    <img src="src/Facebook_Logo_(2019).png" alt="Facebook logo">
+    Continue with Facebook
     </div>
+    <div class="bottom-text">
+      Already have an account? <a href="login.html">Log in</a>
     </div>
-
-    <div class="footer">
-      Already have an account? <a href="login.html">Log in</a><br>
+    <div class="terms">
       By continuing, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
     </div>
-
-    <div id="message" class="error"></div>
   </div>
-
-  <script>
-    const form = document.getElementById('registerForm');
-    const messageDiv = document.getElementById('message');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const full_name = document.getElementById('full_name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value;
-      const confirm_password = document.getElementById('confirm_password').value;
-
-      // Simple front-end validation
-      if (password !== confirm_password) {
-        messageDiv.className = 'error';
-        messageDiv.textContent = 'Passwords do not match.';
-        return;
-      }
-
-      try {
-        const res = await fetch('http://localhost:5000/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ full_name, email, password, confirm_password })
-        });
-
-        const data = await res.json();
-        messageDiv.className = res.ok ? 'success' : 'error';
-        messageDiv.textContent = data.message || data.error;
-      } catch (error) {
-        messageDiv.className = 'error';
-        messageDiv.textContent = 'Something went wrong. Please try again later.';
-      }
-    });
-
-    document.getElementById('google-login').addEventListener('click', () => {
-      alert('Google login clicked');
-    });
-
-    document.getElementById('facebook-login').addEventListener('click', () => {
-      alert('Facebook login clicked');
-    });
-  </script>
 </body>
 </html>
