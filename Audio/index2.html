@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create New Project (Step 3)</title>
+  <!-- <link rel="stylesheet" href="style.css"> -->
+   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background: #f8f8f8;
+      padding: 15px;
+    }
+
+.container {
+  background-color: white;
+  max-width: 800px;
+  margin:  auto;
+  padding:30px;
+  border-radius: 10px;
+  /* box-sizing: border-box; */
+  /* min-height: 610px; */
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.back-link {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+      width: 100%;
+      position: relative;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 30px;
+    }
+
+    .step span {
+      background-color: #000;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .step.active span {
+      background-color: #000;
+    }
+
+    .step.inactive span {
+      background-color: #ccc;
+    }
+
+    .step-bar {
+      background-color: #e7e7e7;
+      height: 5px;
+      position: relative;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    .step-bar .progress {
+      width: 67%;   /* 3 of 4 steps, i.e. 75% for step 3 */
+      background: #111;
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.3s;
+    }
+
+.form-section h3 {
+  margin: 0 0 6px 0;
+}
+
+.upload-box {
+  border: 2px dashed #999;
+  border-radius: 10px;
+  padding: 26px 16px;
+  margin-bottom: 18px;
+  text-align: center;
+  cursor: pointer;
+  background: #fafafa;
+}
+
+.upload-box:hover {
+  border-color: #111;
+}
+
+.upload-icon {
+  font-size: 46px;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.annotation-guidelines {
+  margin-bottom: 4px;
+}
+
+textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 17px;
+  min-height: 66px;
+  padding: 10px;
+  margin-top: 5px;
+  resize: vertical;
+}
+
+.guidelines-helper {
+  color: #888;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.footer-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .footer-buttons button {
+      padding: 10px 25px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+   </style>
+</head>
+<body>
+   <div class="container">
+    <a class="back-link">← Create new project</a>
+    <div class="steps">
+      <div class="step active"><span>1</span></div>
+      <div class="step active"><span>2</span></div>
+      <div class="step active"><span>3</span></div>
+      <div class="step inactive"><span>4</span></div>
+    </div>
+    <div class="step-bar">
+      <div class="progress"></div>
+    </div>
+    <div class="form-section">
+      <h3>Dataset Upload</h3>
+      <p>Upload your dataset for annotation</p>
+      <div class="upload-box" id="uploadBox">
+        <div class="upload-icon">⤴️</div>
+        <input type="file" id="fileInput" multiple style="display: none;" />
+        <p><strong>Upload your dataset</strong></p>
+        <p>Drop files here or click to browse. Supports ZIP, folders, and individual files.</p>
+      </div>
+      <div class="annotation-guidelines">
+        <div id="selectedAnnotation" style="margin-bottom:8px; color:#111; font-weight:bold;"></div>
+        <label for="guidelines"><strong>Annotation Guidelines</strong></label>
+        <textarea id="guidelines" placeholder="Provide detailed instructions for annotators"></textarea>
+      </div>
+      <p class="guidelines-helper">Clear guidelines help ensure consistent and accurate annotations</p>
+      <div class="footer-buttons">
+        <!-- <button id="prevBtn">Previous</button> -->
+        <a href="index.html"><button>Previous</button></a>
+        <!-- <button id="nextBtn">Next</button> -->
+         <a href="index3.html"><button>Next</button></a>
+      </div>
+    </div>
+      <script>
+        // Show selected annotation if present in URL
+        function getQueryParam(name) {
+          const url = new URL(window.location.href);
+          return url.searchParams.get(name);
+        }
+        const selectedAnnotation = getQueryParam('annotation');
+        if (selectedAnnotation) {
+          document.getElementById('selectedAnnotation').textContent = 'Selected Annotation: ' + selectedAnnotation;
+        }
+
+        document.getElementById('uploadBox').addEventListener('click', function() {
+            document.getElementById('fileInput').click();
+        });
+    
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const files = event.target.files;
+            if (files.length > 0) {
+            alert(`${files.length} file(s) selected for upload.`);
+            }
+        });
+      </script>
+   </div>
+
+</body>
+</html>
