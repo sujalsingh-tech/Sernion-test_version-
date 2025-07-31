@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create new project</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+</head>
+<body>
+<div class="top-header">
+    <span class="back-arrow">&#8592;</span>
+    <span class="header-title"><b>Create new project</b></span>
+</div>
+<hr class="header-underline">
+<div class="steps">
+    <div class="step">1</div>
+    <div class="line"></div>
+    <div class="step">2</div>
+    <div class="line"></div>
+    <div class="step">3</div>
+    <div class="line"></div>
+    <div class="step">4</div>
+</div>
+<div class="outer">
+    <div class="card">
+        <div style="font-weight:700;margin-bottom:3px;font-size:15px;">Data & Annotation Type</div>
+        <p style="margin-top:0;font-size:13px;">Select the type of data and annotation method</p>
+        <div style="font-weight:600;margin-bottom:8px;font-size:16px;">Data Type</div>
+        <!-- Data Type Buttons -->
+        <div class="data-types">
+            <div class="data-btn">
+                <span class="data-btn-icon"><i class="fi fi-rr-picture"></i></span>
+                <span class="data-btn-text"><b>Images</b><br><small>JPG, PNG, SVG files</small></span>
+            </div>
+            <div class="data-btn">
+                <span class="data-btn-icon"><i class="fi fi-rr-text"></i></span>
+                <span class="data-btn-text"><b>Text</b><br><small>Documents, articles, reviews</small></span>
+            </div>
+            <div class="data-btn">
+                <span class="data-btn-icon"><i class="fi fi-rr-play-alt"></i></span>
+                <span class="data-btn-text"><b>Video</b><br><small>MP4, AVI, MOV files</small></span>
+            </div>
+            <div class="data-btn">
+                <span class="data-btn-icon"><i class="fi fi-rr-volume"></i></span>
+                <span class="data-btn-text"><b>Audio</b><br><small>MP3, WAV, FLAC files</small></span>
+            </div>
+        </div>
+        <div style="font-weight:600;margin-bottom:8px;font-size:15px;">Annotation Type</div>
+        <!-- Annotation Type Buttons -->
+        <div class="annotation-border">
+            <div class="annotation-types">
+                <div class="annotation-btn"><b>Action Recognition</b> - Identify actions in video</div>
+                <div class="annotation-btn"><b>Object Tracking</b> - Track objects across frames</div>
+                <div class="annotation-btn"><b>Temporal Segmentation</b> - Mark time-based events</div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <button>Previous</button>
+        <button>Next</button>
+    </div>
+</div>
+<script>
+document.querySelectorAll('.step').forEach(function(step, idx) {
+    step.addEventListener('click', function() {
+        // Set all steps before and including clicked one to active-step
+        document.querySelectorAll('.step').forEach((s, i) => {
+            if (i <= idx) {
+                s.classList.add('active-step');
+            } else {
+                s.classList.remove('active-step');
+            }
+        });
+        // Set all lines before clicked step to active-line
+        const lines = document.querySelectorAll('.line');
+        lines.forEach((line, i) => {
+            if (i < idx) {
+                line.classList.add('active-line');
+            } else {
+                line.classList.remove('active-line');
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>
