@@ -1,0 +1,224 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+    body {
+      background-color: #f8f8f8;
+      padding: 20px;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      margin-top: 60px; /* Move box lower */
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .back-arrow {
+      font-size: 20px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .back-btn:hover {
+      color: #0078d4;
+    }
+    .title {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+      width: 100%;
+      position: relative;
+    }
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Remove flex: 1 to allow even spacing at ends */
+      min-width: 30px;
+    }
+
+    .step span {
+      background-color: #000;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .step.active span {
+      background-color: #000;
+    }
+    .step-inactive span {
+      background-color:#000;
+    }
+
+    .step.inactive span {
+      background-color: #ccc;
+    }
+    .data-section1{
+      margin-top: 40px;
+      padding: 25px;
+      border: 1px solid #ccc;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .data-section {
+      margin-top: 20px;
+    }
+    .step-bar {
+      background-color: #e7e7e7;
+      height: 5px;
+      position: relative;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    .step-bar .progress {
+      width: 35%;   /* 1 of 4 steps, i.e. 25% for step 1 */
+      background: #111;
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.3s;
+    }
+    .data{
+      font-size: 20px;
+      display: inline-block;
+      margin-bottom: 18px;
+      margin-top:15px ;
+    }
+    .data-section h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .data-section h3 {
+      margin-bottom: 10px;
+    }
+
+    .data-types {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .data-types button {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: left;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #fff;
+      cursor: pointer;
+      gap: 0;
+    }
+    .data-types button img {
+      height: 32px;
+      width: 32px;
+      margin-right: 16px;
+      vertical-align: middle;
+      margin-bottom: 0;
+    }
+    .data-label {
+      font-size: 1.18em;
+      font-weight: 700;
+      margin-bottom: 0;
+      display: block;
+    }
+    .data-desc {
+      font-size: 1.05em;
+      color: #555;
+      font-weight: 400;
+      margin-left: 0;
+      display: block;
+    }
+    /* svg section */
+    .data-types button i {
+      margin-right: 10px;
+      font-size: 2em;
+      vertical-align: middle;
+    }
+    .fas fa-file-alt{
+      margin-right: 10px;
+      font-size: 2em;
+      vertical-align: middle;
+    }
+    .fa-solid fa-video{
+      margin-right: 10px;
+      font-size: 2em;
+      vertical-align: middle;
+    }
+    .fa-solid fa-volume-high{
+      margin-right: 10px;
+      font-size: 2em;
+      vertical-align: middle;
+    }
+
+    .footer-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 560px;
+      margin-top: 20px;
+    }
+
+    .footer-buttons button {
+      padding: 10px 32px;
+      font-size: 1em;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: background 0.2s;
+    }
+
+    .footer-buttons button:hover {
+      background-color: #222;
+    }
+    .data-label {
+      font-size: 1.18em;
+      font-weight: 700;
+      vertical-align: middle;
+    }
+    .data-desc {
+      display: block;
+      font-size: 1.05em;
+      color: #555;
+      margin-top: 2px;
+      font-weight: 400;
+    }
+    .data-types button img {
+      display: inline-block;
+      vertical-align: middle;
+      margin-bottom: 2px;
+    }
+    .data-types button {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: left;
+    }
+    button:hover {
+       background: #a7a6a6;
+       color: #ffffff;
+    }
