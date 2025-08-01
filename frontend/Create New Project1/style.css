@@ -33,9 +33,6 @@ body {
   margin-right: 10px;
   transition: color 0.2s;
 }
-.back-btn:hover {
-  color: #0078d4;
-}
 .stepper {
   display: flex;
   justify-content: flex-start;
@@ -160,15 +157,11 @@ button {
   color: #fff;
   border: none;
   border-radius: 7px;
-  padding: 12px 32px;
-  font-size: 17px;
-  font-weight: 700;
+  padding: 10px 24px;
+  font-size: 1em;
+  font-weight: 600;
   cursor: pointer;
   transition: background 0.2s, box-shadow 0.2s;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-button:hover {
-  background: #0078d4;
-  color: #fff;
 }
 }
