@@ -55,40 +55,40 @@ SERNION-MARK/
 ## Features
 
 🎯 Multi-Media Annotation Support
-Audio Annotation → Upload, view, and annotate audio files with dedicated pages.
+- Audio Annotation → Upload, view, and annotate audio files with dedicated pages.
 
-Image Annotation → Tag and classify images with a user-friendly interface.
+- Image Annotation → Tag and classify images with a user-friendly interface.
 
-Text Annotation → Highlight, label, and categorize text-based content.
+- Text Annotation → Highlight, label, and categorize text-based content.
 
-Video Annotation → Frame-by-frame video annotation with navigation controls.
+- Video Annotation → Frame-by-frame video annotation with navigation controls.
 
 🖥 Organized Frontend Structure
-Separate folders for Audio, Video, Image, and Text ensure better maintainability.
+- Separate folders for Audio, Video, Image, and Text ensure better maintainability.
 
-src/ folder contains all reusable icons and media assets.
+- src/ folder contains all reusable icons and media assets.
 
-Clean HTML & CSS structure for easy customization.
+- Clean HTML & CSS structure for easy customization.
 
 🔐 User Authentication
-Login and Signup pages for secure access.
+- Login and Signup pages for secure access.
 
-Session-based access control for project workspaces.
+- Session-based access control for project workspaces.
 
 📊 Dashboard & Navigation
-Centralized Dashboard to manage projects and track progress.
+- Centralized Dashboard to manage projects and track progress.
 
-Easy navigation between annotation types and datasets.
+- Easy navigation between annotation types and datasets.
 
 🛠 Extensible Backend Ready
-backend/ folder prepared for API integration and server logic.
+- backend/ folder prepared for API integration and server logic.
 
-Can be connected to databases (MySQL, MongoDB, etc.) for persistent data storage.
+- Can be connected to databases (MySQL, MongoDB, etc.) for persistent data storage.
 
 🌐 Cross-Platform Compatibility
-Works on modern browsers (Chrome, Firefox, Edge, Safari).
+- Works on modern browsers (Chrome, Firefox, Edge, Safari).
 
-Responsive design for desktops, tablets, and mobile devices.
+- Responsive design for desktops, tablets, and mobile devices.
 
 
 ## Getting Started
