@@ -193,10 +193,15 @@
         <h3>Dataset Upload</h3>
         <p>Upload your dataset for annotation</p>
         <div class="upload-box" id="uploadBox">
-          <div class="upload-icon">⤴️</div>
+            <div style="text-align:center; margin-bottom:18px;">
+          <img src="../src/upload.png" alt="Upload Logo" style="width:110px; height:110px; object-fit:contain; display:inline-block;" />
+          <div style="margin-top:12px;">
+            <div style="font-weight:600; font-size:18px;">Upload your dataset</div>
+            <div style="font-size:16px; color:#444; margin-top:2px;">Drop files here or click to browse. Supports ZIP, folders, and individual files.</div>
+          </div>
+        </div>
+            </div>
           <input type="file" id="fileInput" multiple style="display: none;" />
-          <p><strong>Upload your dataset</strong></p>
-          <p>Drop files here or click to browse. Supports ZIP, folders, and individual files.</p>
         </div>
         <div class="annotation-guidelines">
           <div id="selectedAnnotation" style="margin-bottom:8px; color:#111; font-weight:bold;"></div>
