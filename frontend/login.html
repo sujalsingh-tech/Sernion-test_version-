@@ -131,7 +131,8 @@
     <div class="form-group">
       <label>Password</label>
       <div class="input-icon">
-        <input type="password" placeholder="Enter password" required />
+        <input type="password" placeholder="Enter password" required id="loginPassword" />
+        <i class="fa-solid fa-eye-slash eye-btn" id="toggleLoginPassword"></i>
       </div>
     </div>
     <div class="forgot"><a href="#">Forgot password?</a></div>
@@ -148,5 +149,16 @@
       By continuing, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
     </div>
   </div>
+  <script>
+    // Eye button logic for login password
+    const loginPasswordInput = document.getElementById('loginPassword');
+    const toggleLoginPassword = document.getElementById('toggleLoginPassword');
+    toggleLoginPassword.addEventListener('click', function () {
+      const type = loginPasswordInput.type === 'password' ? 'text' : 'password';
+      loginPasswordInput.type = type;
+      this.classList.toggle('fa-eye');
+      this.classList.toggle('fa-eye-slash');
+    });
+  </script>
 </body>
 </html>
