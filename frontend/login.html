@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login Page</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+  <!-- Add Font Awesome for eye icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
   <style>
     * {
       box-sizing: border-box;
@@ -50,6 +52,7 @@
       background: #f1f1f1;
       padding: 10px;
       border-radius: 6px;
+      position: relative;
     }
     .input-icon input {
       border: none;
@@ -57,6 +60,16 @@
       background: transparent;
       width: 100%;
       margin-left: 10px;
+    }
+    .input-icon i.eye-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: #888;
+      cursor: pointer;
+      z-index: 2;
     }
     .input-icon i {
       color: #333;
@@ -154,10 +167,10 @@
     const loginPasswordInput = document.getElementById('loginPassword');
     const toggleLoginPassword = document.getElementById('toggleLoginPassword');
     toggleLoginPassword.addEventListener('click', function () {
-      const type = loginPasswordInput.type === 'password' ? 'text' : 'password';
-      loginPasswordInput.type = type;
-      this.classList.toggle('fa-eye');
-      this.classList.toggle('fa-eye-slash');
+      const isPassword = loginPasswordInput.type === 'password';
+      loginPasswordInput.type = isPassword ? 'text' : 'password';
+      this.classList.toggle('fa-eye', isPassword);
+      this.classList.toggle('fa-eye-slash', !isPassword);
     });
   </script>
 </body>
