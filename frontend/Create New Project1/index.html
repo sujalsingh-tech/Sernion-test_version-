@@ -25,7 +25,7 @@
       <h3>Project Details</h3>
       <p>Provide basic information about your annotation project</p>
       <label>Project name</label>
-      <input type="text" placeholder="Enter project name" />
+    <input type="text" id="projectName" placeholder="Enter project name" />
       <label>Description</label>
       <textarea placeholder="Enter project description"></textarea>
       <div class="row form-row-gap">
@@ -48,6 +48,16 @@
       <div class="footer-buttons">
           <a href="../Main Data Anotation type.html"><button id="Next-button">Next</button></a>
       </div>
+      <script>
+        const projectNameInput = document.getElementById('projectName');
+        const nextButton = document.getElementById('Next-button');
+        nextButton.addEventListener('click', function(e) {
+          if (projectNameInput.value.trim() === '') {
+            e.preventDefault();
+            alert('Please enter a project name before proceeding.');
+          }
+        });
+      </script>
     </div>
   </div>
   <script>
