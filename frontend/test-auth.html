@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Test - Sernion Mark</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-section h2 {
+            color: #555;
+            margin-top: 0;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        .links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .links a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .links a:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Sernion Mark Authentication Test</h1>
+        
+        <div class="status info">
+            <strong>Backend Status:</strong> 
+            <span id="backendStatus">Checking...</span>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 API Connection Test</h2>
+            <button onclick="testBackendConnection()">Test Backend Connection</button>
+            <div id="connectionResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>👤 User Registration Test</h2>
+            <button onclick="testRegistration()">Test Registration</button>
+            <div id="registrationResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔐 User Login Test</h2>
+            <button onclick="testLogin()">Test Login</button>
+            <div id="loginResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔒 Token Verification Test</h2>
+            <button onclick="testTokenVerification()" id="verifyBtn" disabled>Test Token Verification</button>
+            <div id="verificationResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🚪 Logout Test</h2>
+            <button onclick="testLogout()" id="logoutBtn" disabled>Test Logout</button>
+            <div id="logoutResult"></div>
+        </div>
+
+        <div class="links">
+            <a href="signup.html">📝 Go to Sign Up Page</a>
+            <a href="login.html">🔑 Go to Login Page</a>
+            <a href="dashboard.html">📊 Go to Dashboard</a>
+        </div>
+    </div>
+
+    <!-- Include API Client -->
+    <script src="js/api.js"></script>
+    
+    <script>
+        let currentToken = null;
+        let testUser = null;
+
+        // Test backend connection
+        async function testBackendConnection() {
+            const resultDiv = document.getElementById('connectionResult');
+            resultDiv.innerHTML = '<div class="status info">Testing connection...</div>';
+            
+            try {
+                const response = await api.healthCheck();
+                resultDiv.innerHTML = `
+                    <div class="status success">
+                        ✅ Backend is running!<br>
+                        Service: ${response.service}<br>
+                        Timestamp: ${response.timestamp}
+                    </div>
+                `;
+                document.getElementById('backendStatus').textContent = '✅ Connected';
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Backend connection failed<br>
+                        Error: ${error.message}<br>
+                        Make sure the Django server is running on http://localhost:8000
+                    </div>
+                `;
+                document.getElementById('backendStatus').textContent = '❌ Disconnected';
+            }
+        }
+
+        // Test user registration
+        async function testRegistration() {
+            const resultDiv = document.getElementById('registrationResult');
+            resultDiv.innerHTML = '<div class="status info">Testing registration...</div>';
+            
+            // Generate unique test user
+            const timestamp = Date.now();
+            testUser = {
+                username: `testuser${timestamp}`,
+                email: `test${timestamp}@example.com`,
+                password: 'testpassword123',
+                password_confirm: 'testpassword123',
+                full_name: 'Test User'
+            };
+            
+            try {
+                const response = await api.register(testUser);
+                if (response.success) {
+                    currentToken = response.token;
+                    resultDiv.innerHTML = `
+                        <div class="status success">
+                            ✅ Registration successful!<br>
+                            User: ${response.user.username}<br>
+                            Email: ${response.user.email}<br>
+                            Token: ${response.token.substring(0, 20)}...
+                        </div>
+                    `;
+                    document.getElementById('verifyBtn').disabled = false;
+                    document.getElementById('logoutBtn').disabled = false;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="status error">
+                            ❌ Registration failed<br>
+                            Errors: ${JSON.stringify(response.errors)}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Registration error<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Test user login
+        async function testLogin() {
+            const resultDiv = document.getElementById('loginResult');
+            resultDiv.innerHTML = '<div class="status info">Testing login...</div>';
+            
+            if (!testUser) {
+                resultDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ No test user available. Run registration test first.
+                    </div>
+                `;
+                return;
+            }
+            
+            try {
+                const response = await api.login({
+                    username: testUser.username,
+                    password: testUser.password
+                });
+                
+                if (response.success) {
+                    currentToken = response.token;
+                    resultDiv.innerHTML = `
+                        <div class="status success">
+                            ✅ Login successful!<br>
+                            User: ${response.user.username}<br>
+                            Token: ${response.token.substring(0, 20)}...
+                        </div>
+                    `;
+                    document.getElementById('verifyBtn').disabled = false;
+                    document.getElementById('logoutBtn').disabled = false;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="status error">
+                            ❌ Login failed<br>
+                            Errors: ${JSON.stringify(response.errors)}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Login error<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Test token verification
+        async function testTokenVerification() {
+            const resultDiv = document.getElementById('verificationResult');
+            resultDiv.innerHTML = '<div class="status info">Testing token verification...</div>';
+            
+            if (!currentToken) {
+                resultDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ No token available. Login or register first.
+                    </div>
+                `;
+                return;
+            }
+            
+            try {
+                const response = await api.verifyToken();
+                if (response.success) {
+                    resultDiv.innerHTML = `
+                        <div class="status success">
+                            ✅ Token verification successful!<br>
+                            User: ${response.user.username}<br>
+                            Email: ${response.user.email}
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="status error">
+                            ❌ Token verification failed<br>
+                            Response: ${JSON.stringify(response)}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Token verification error<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Test logout
+        async function testLogout() {
+            const resultDiv = document.getElementById('logoutResult');
+            resultDiv.innerHTML = '<div class="status info">Testing logout...</div>';
+            
+            try {
+                await api.logout();
+                currentToken = null;
+                resultDiv.innerHTML = `
+                    <div class="status success">
+                        ✅ Logout successful!<br>
+                        Token cleared from storage.
+                    </div>
+                `;
+                document.getElementById('verifyBtn').disabled = true;
+                document.getElementById('logoutBtn').disabled = true;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Logout error<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Auto-test on page load
+        window.addEventListener('load', function() {
+            testBackendConnection();
+        });
+    </script>
+</body>
+</html>

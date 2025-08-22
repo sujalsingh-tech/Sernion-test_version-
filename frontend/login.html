@@ -137,21 +137,24 @@
   <div class="container">
     <h2>Welcome Back</h2>
     <p class="sub-text">Sign into your account to continue</p>    
-    <div class="form-group">
-      <label>Email address</label>
-      <div class="input-icon">
-        <input type="email" placeholder="Enter email address" required />
+    
+    <form id="loginForm">
+      <div class="form-group">
+        <label>Username or Email</label>
+        <div class="input-icon">
+          <input type="text" name="username" placeholder="Enter username or email" required />
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <div class="input-icon">
-        <input type="password" placeholder="Enter password" required id="loginPassword" />
-        <i class="fa-solid fa-eye-slash eye-btn" id="toggleLoginPassword"></i>
+      <div class="form-group">
+        <label>Password</label>
+        <div class="input-icon">
+          <input type="password" name="password" placeholder="Enter password" required id="loginPassword" />
+          <i class="fa-solid fa-eye-slash eye-btn" id="toggleLoginPassword"></i>
+        </div>
       </div>
-    </div>
-    <div class="forgot"><a href="#">Forgot password?</a></div>
-    <a href="verify.html" class="primary-btn" style="display:block;text-align:center;text-decoration:none;background:black;color:white;padding:12px;width:100%;border-radius:6px;font-size:16px;font-weight:400;margin-bottom:20px;">Continue</a>
+      <div class="forgot"><a href="#">Forgot password?</a></div>
+      <button type="submit" class="primary-btn">Continue</button>
+    </form>
     <div class="divider">OR</div>
     <div class="social-btn">
     <img src="src/Google_Icons-09-512.png" alt="Google logo" style="width:30px;height:30px;">
@@ -164,6 +167,9 @@
       By continuing, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
     </div>
   </div>
+  <!-- Include API Client -->
+  <script src="js/api.js"></script>
+  
   <script>
     // Eye button logic for login password
     const loginPasswordInput = document.getElementById('loginPassword');
@@ -173,6 +179,51 @@
       loginPasswordInput.type = isPassword ? 'text' : 'password';
       this.classList.toggle('fa-eye', isPassword);
       this.classList.toggle('fa-eye-slash', !isPassword);
+    });
+
+    // Form submission with API integration
+    const loginForm = document.getElementById('loginForm');
+    
+    loginForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      
+      const formData = new FormData(loginForm);
+      
+      // Show loading state
+      const submitBtn = loginForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Logging in...';
+      submitBtn.disabled = true;
+      
+      try {
+        // Call the API
+        const response = await api.login({
+          username: formData.get('username'),
+          password: formData.get('password')
+        });
+        
+        if (response.success) {
+          // Show success message
+          submitBtn.textContent = 'Login successful! ✅';
+          setTimeout(() => {
+            window.location.href = "dashboard.html";
+          }, 1000);
+        } else {
+          // Show error message
+          submitBtn.textContent = 'Login failed';
+          alert('Login failed: ' + (response.errors || 'Invalid credentials'));
+        }
+      } catch (error) {
+        // Show error message
+        submitBtn.textContent = 'Login failed';
+        alert('Error: ' + error.message);
+      } finally {
+        // Reset button after 3 seconds
+        setTimeout(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }, 3000);
+      }
     });
   </script>
 </body>
