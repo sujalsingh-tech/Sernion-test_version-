@@ -1,71 +1,27 @@
-# --- OS / File system ---
-.DS_Store
-Thumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-*.lnk
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
 
-# --- Editors / IDEs ---
+# Environments
+venv/
+.env
+
+# Django / SQLite
+backend/db.sqlite3
+backend/logs/
+
+# IDE / Editor
 .vscode/
 .idea/
-*.code-workspace
 
-# --- Logs & Temp ---
-*.log
-logs/
-*.tmp
-.tmp/
-tmp/
-temp/
-
-# --- Environment files ---
-.env
-.env.*
-!.env.example
-
-# --- Python ---
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Virtual environments
-.venv/
-venv/
-env/
-ENV/
-.python-version
-
-# Packaging / build outputs
-build/
-dist/
-*.egg-info/
-.eggs/
-
-# Testing / typing / coverage
-.pytest_cache/
-.mypy_cache/
-.coverage
-.coverage.*
-htmlcov/
-
-# --- Node / Frontend build tools (if introduced later) ---
+# Node / Frontend
 node_modules/
-.pnpm-debug.log*
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+.DS_Store
 
-# Common bundler caches
-.cache/
-.vite/
-.svelte-kit/
-.next/
-.nuxt/
-
-# Frontend build outputs
-out/
-public/build/
-
-# --- Local history ---
-.history/
-.localhistory/
+# Misc
+*.log
+*.sqlite3

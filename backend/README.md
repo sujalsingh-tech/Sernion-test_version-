@@ -2,6 +2,134 @@
 
 A robust Django REST API backend for the Sernion Mark multimedia annotation platform.
 
+## 🖥️ Windows Backend Development Guide (Recommended)
+
+This section focuses on setting up and running the backend on Windows.
+
+### System Requirements
+
+- Python 3.10.x recommended (supports 3.8 – 3.12)
+- pip (bundled with Python)
+- Git for Windows
+- Optional: Redis (for Celery), PostgreSQL (for production)
+
+### Check Your Python on Windows
+
+Run one of the following in Command Prompt (cmd) or PowerShell:
+
+```bash
+python --version
+py -V
+```
+
+If you have multiple Python versions installed, prefer the `py` launcher:
+
+```bash
+py -3.10 --version
+```
+
+### Create and Activate Virtual Environment
+
+Command Prompt (cmd):
+```bash
+cd backend
+py -3.10 -m venv venv
+venv\Scripts\activate
+```
+
+PowerShell:
+```bash
+cd backend
+py -3.10 -m venv venv
+./venv/Scripts/Activate.ps1
+```
+
+If PowerShell blocks activation, run as a one-time setup:
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+```
+
+### Install Dependencies
+```bash
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+Note for Windows:
+- If you encounter issues with `python-magic`, install the Windows wheel: `pip install python-magic-bin==0.4.14`.
+- Keep `psycopg2-binary` for Windows; do not switch to `psycopg2` unless you have build tools.
+
+### Environment Variables (.env)
+
+Use the provided `test.env` as a template:
+```bash
+copy test.env .env
+```
+Then edit `.env` with your values (see Environment Variables section below).
+
+### Database and Migrations
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+### Create Superuser
+```bash
+python manage.py createsuperuser
+```
+
+### Run Server
+```bash
+python manage.py runserver
+```
+
+Browse: `http://localhost:8000`
+
+### Recommended IDEs and Extensions
+
+- Visual Studio Code (lightweight, free)
+  - Extensions: "Python" (Microsoft), "Pylance", "Black Formatter", "isort", "Django"
+  - Optional: "dotenv" or "Env" for .env syntax highlighting
+- PyCharm Community/Professional (Django support is best in Professional)
+
+VS Code Debugging (optional): create `.vscode/launch.json` and use Django configuration; ensure your venv Python is selected.
+
+---
+
+## 📦 Dependencies and Versions
+
+Key runtime dependencies (see `requirements.txt` for full list):
+
+- Django 4.2.7
+- Django REST Framework 3.14.0
+- django-cors-headers 4.3.1
+- djangorestframework-simplejwt 5.3.0
+- Pillow 10.1.0
+- drf-yasg 1.21.7 (API docs)
+- python-dotenv 1.0.0 and django-environ 0.11.2 (env management)
+- Celery 5.3.4 and redis 5.0.1 (async tasks; optional in dev)
+- psycopg2-binary 2.9.9 (PostgreSQL; use in prod)
+
+Optional services:
+- Redis (required if you run Celery workers)
+- PostgreSQL (recommended for staging/production)
+
+---
+
+## 🧰 Windows Troubleshooting
+
+- Module build/compile errors
+  - Ensure you are using `psycopg2-binary` on Windows.
+  - If `python-magic` fails, install `python-magic-bin==0.4.14`.
+- Virtualenv activation blocked in PowerShell
+  - Run PowerShell as user and execute: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`.
+- Port already in use (8000)
+  - Use a different port: `python manage.py runserver 8001`.
+- Environment variables not loaded
+  - Verify `.env` exists in `backend/` and that `python-dotenv`/`django-environ` are configured in `settings.py`.
+
+---
+
 ## 🏗️ Architecture Overview
 
 Based on the system architecture diagram, this backend provides:
@@ -45,8 +173,11 @@ Based on the system architecture diagram, this backend provides:
 
 4. **Set up environment variables:**
    ```bash
-   # Create .env file
-   cp config.env.example .env
+   # Create .env file from template
+   # Windows (cmd)
+   copy test.env .env
+   # macOS/Linux
+   cp test.env .env
    # Edit .env with your configuration
    ```
 
