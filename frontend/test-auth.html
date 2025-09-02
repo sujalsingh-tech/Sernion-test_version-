@@ -4,133 +4,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authentication Test - Sernion Mark</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#007bff',
+                        'primary-dark': '#0056b3',
+                        'success': '#28a745',
+                        'success-dark': '#218838',
+                        'error': '#dc3545',
+                        'warning': '#ffc107',
+                        'info': '#17a2b8'
+                    }
+                }
+            }
         }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        .test-section {
-            margin-bottom: 30px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-        .test-section h2 {
-            color: #555;
-            margin-top: 0;
-        }
-        .status {
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
-            font-weight: bold;
-        }
-        .status.success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        .status.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        .status.info {
-            background-color: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
-        }
-        button {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-        button:disabled {
-            background: #6c757d;
-            cursor: not-allowed;
-        }
-        .links {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .links a {
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
-            background: #28a745;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .links a:hover {
-            background: #218838;
-        }
-    </style>
+    </script>
 </head>
-<body>
-    <div class="container">
-        <h1>🔐 Sernion Mark Authentication Test</h1>
-        
-        <div class="status info">
-            <strong>Backend Status:</strong> 
-            <span id="backendStatus">Checking...</span>
+<body class="bg-gray-100 min-h-screen py-8">
+    <div class="max-w-4xl mx-auto px-4">
+        <!-- Main Container -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-6">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-6">
+                <h1 class="text-3xl font-bold text-white text-center flex items-center justify-center gap-3">
+                    <span class="text-4xl">🔐</span>
+                    Sernion Mark Authentication Test
+                </h1>
+            </div>
+
+            <!-- Content -->
+            <div class="p-8">
+                <!-- Backend Status -->
+                <div class="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <div class="flex items-center gap-2">
+                        <span class="font-semibold text-blue-800">Backend Status:</span>
+                        <span id="backendStatus" class="text-blue-600 font-medium">Checking...</span>
+                    </div>
+                </div>
+
+                <!-- Test Sections Grid -->
+                <div class="grid gap-6 md:grid-cols-2">
+                    <!-- API Connection Test -->
+                    <div class="test-section bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                            <span class="text-2xl">🧪</span>
+                            API Connection Test
+                        </h2>
+                        <button 
+                            onclick="testBackendConnection()" 
+                            class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+                            Test Backend Connection
+                        </button>
+                        <div id="connectionResult" class="mt-4"></div>
+                    </div>
+
+                    <!-- User Registration Test -->
+                    <div class="test-section bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                            <span class="text-2xl">👤</span>
+                            User Registration Test
+                        </h2>
+                        <button 
+                            onclick="testRegistration()" 
+                            class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                            Test Registration
+                        </button>
+                        <div id="registrationResult" class="mt-4"></div>
+                    </div>
+
+                    <!-- User Login Test -->
+                    <div class="test-section bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                            <span class="text-2xl">🔐</span>
+                            User Login Test
+                        </h2>
+                        <button 
+                            onclick="testLogin()" 
+                            class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+                            Test Login
+                        </button>
+                        <div id="loginResult" class="mt-4"></div>
+                    </div>
+
+                    <!-- Token Verification Test -->
+                    <div class="test-section bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                            <span class="text-2xl">🔒</span>
+                            Token Verification Test
+                        </h2>
+                        <button 
+                            onclick="testTokenVerification()" 
+                            id="verifyBtn" 
+                            disabled 
+                            class="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">
+                            Test Token Verification
+                        </button>
+                        <div id="verificationResult" class="mt-4"></div>
+                    </div>
+
+                    <!-- Logout Test -->
+                    <div class="test-section bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow md:col-span-2">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                            <span class="text-2xl">🚪</span>
+                            Logout Test
+                        </h2>
+                        <button 
+                            onclick="testLogout()" 
+                            id="logoutBtn" 
+                            disabled 
+                            class="w-full md:w-auto bg-red-600 hover:bg-red-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+                            Test Logout
+                        </button>
+                        <div id="logoutResult" class="mt-4"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="test-section">
-            <h2>🧪 API Connection Test</h2>
-            <button onclick="testBackendConnection()">Test Backend Connection</button>
-            <div id="connectionResult"></div>
-        </div>
-
-        <div class="test-section">
-            <h2>👤 User Registration Test</h2>
-            <button onclick="testRegistration()">Test Registration</button>
-            <div id="registrationResult"></div>
-        </div>
-
-        <div class="test-section">
-            <h2>🔐 User Login Test</h2>
-            <button onclick="testLogin()">Test Login</button>
-            <div id="loginResult"></div>
-        </div>
-
-        <div class="test-section">
-            <h2>🔒 Token Verification Test</h2>
-            <button onclick="testTokenVerification()" id="verifyBtn" disabled>Test Token Verification</button>
-            <div id="verificationResult"></div>
-        </div>
-
-        <div class="test-section">
-            <h2>🚪 Logout Test</h2>
-            <button onclick="testLogout()" id="logoutBtn" disabled>Test Logout</button>
-            <div id="logoutResult"></div>
-        </div>
-
-        <div class="links">
-            <a href="signup.html">📝 Go to Sign Up Page</a>
-            <a href="login.html">🔑 Go to Login Page</a>
-            <a href="dashboard.html">📊 Go to Dashboard</a>
+        <!-- Navigation Links -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center">Navigation</h3>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="signup.html" 
+                   class="inline-flex items-center gap-2 bg-success hover:bg-success-dark text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                    <span class="text-lg">📝</span>
+                    Sign Up Page
+                </a>
+                <a href="login.html" 
+                   class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    <span class="text-lg">🔑</span>
+                    Login Page
+                </a>
+                <a href="dashboard.html" 
+                   class="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">
+                    <span class="text-lg">📊</span>
+                    Dashboard
+                </a>
+            </div>
         </div>
     </div>
 
@@ -141,37 +154,63 @@
         let currentToken = null;
         let testUser = null;
 
+        // Utility function to create status messages
+        function createStatusMessage(type, content) {
+            const typeClasses = {
+                success: 'bg-green-50 border border-green-200 text-green-800',
+                error: 'bg-red-50 border border-red-200 text-red-800',
+                info: 'bg-blue-50 border border-blue-200 text-blue-800',
+                warning: 'bg-yellow-50 border border-yellow-200 text-yellow-800'
+            };
+            
+            const icons = {
+                success: '✅',
+                error: '❌',
+                info: 'ℹ️',
+                warning: '⚠️'
+            };
+
+            return `
+                <div class="${typeClasses[type]} p-4 rounded-lg">
+                    <div class="flex items-start gap-2">
+                        <span class="text-lg flex-shrink-0">${icons[type]}</span>
+                        <div class="font-medium">${content}</div>
+                    </div>
+                </div>
+            `;
+        }
+
         // Test backend connection
         async function testBackendConnection() {
             const resultDiv = document.getElementById('connectionResult');
-            resultDiv.innerHTML = '<div class="status info">Testing connection...</div>';
+            resultDiv.innerHTML = createStatusMessage('info', 'Testing connection...');
             
             try {
                 const response = await api.healthCheck();
-                resultDiv.innerHTML = `
-                    <div class="status success">
-                        ✅ Backend is running!<br>
-                        Service: ${response.service}<br>
-                        Timestamp: ${response.timestamp}
+                resultDiv.innerHTML = createStatusMessage('success', `
+                    <div>Backend is running!</div>
+                    <div class="mt-2 text-sm opacity-75">
+                        <div>Service: <span class="font-mono">${response.service}</span></div>
+                        <div>Timestamp: <span class="font-mono">${response.timestamp}</span></div>
                     </div>
-                `;
-                document.getElementById('backendStatus').textContent = '✅ Connected';
+                `);
+                document.getElementById('backendStatus').innerHTML = '<span class="text-green-600 font-medium">✅ Connected</span>';
             } catch (error) {
-                resultDiv.innerHTML = `
-                    <div class="status error">
-                        ❌ Backend connection failed<br>
-                        Error: ${error.message}<br>
-                        Make sure the Django server is running on http://localhost:8000
+                resultDiv.innerHTML = createStatusMessage('error', `
+                    <div>Backend connection failed</div>
+                    <div class="mt-2 text-sm">
+                        <div>Error: <span class="font-mono">${error.message}</span></div>
+                        <div class="mt-1">Make sure the Django server is running on http://localhost:8000</div>
                     </div>
-                `;
-                document.getElementById('backendStatus').textContent = '❌ Disconnected';
+                `);
+                document.getElementById('backendStatus').innerHTML = '<span class="text-red-600 font-medium">❌ Disconnected</span>';
             }
         }
 
         // Test user registration
         async function testRegistration() {
             const resultDiv = document.getElementById('registrationResult');
-            resultDiv.innerHTML = '<div class="status info">Testing registration...</div>';
+            resultDiv.innerHTML = createStatusMessage('info', 'Testing registration...');
             
             // Generate unique test user
             const timestamp = Date.now();
@@ -187,45 +226,41 @@
                 const response = await api.register(testUser);
                 if (response.success) {
                     currentToken = response.token;
-                    resultDiv.innerHTML = `
-                        <div class="status success">
-                            ✅ Registration successful!<br>
-                            User: ${response.user.username}<br>
-                            Email: ${response.user.email}<br>
-                            Token: ${response.token.substring(0, 20)}...
+                    resultDiv.innerHTML = createStatusMessage('success', `
+                        <div>Registration successful!</div>
+                        <div class="mt-2 text-sm opacity-75">
+                            <div>User: <span class="font-mono">${response.user.username}</span></div>
+                            <div>Email: <span class="font-mono">${response.user.email}</span></div>
+                            <div>Token: <span class="font-mono">${response.token.substring(0, 20)}...</span></div>
                         </div>
-                    `;
+                    `);
                     document.getElementById('verifyBtn').disabled = false;
                     document.getElementById('logoutBtn').disabled = false;
                 } else {
-                    resultDiv.innerHTML = `
-                        <div class="status error">
-                            ❌ Registration failed<br>
-                            Errors: ${JSON.stringify(response.errors)}
+                    resultDiv.innerHTML = createStatusMessage('error', `
+                        <div>Registration failed</div>
+                        <div class="mt-2 text-sm">
+                            <div>Errors: <span class="font-mono">${JSON.stringify(response.errors)}</span></div>
                         </div>
-                    `;
+                    `);
                 }
             } catch (error) {
-                resultDiv.innerHTML = `
-                    <div class="status error">
-                        ❌ Registration error<br>
-                        Error: ${error.message}
+                resultDiv.innerHTML = createStatusMessage('error', `
+                    <div>Registration error</div>
+                    <div class="mt-2 text-sm">
+                        <div>Error: <span class="font-mono">${error.message}</span></div>
                     </div>
-                `;
+                `);
             }
         }
 
         // Test user login
         async function testLogin() {
             const resultDiv = document.getElementById('loginResult');
-            resultDiv.innerHTML = '<div class="status info">Testing login...</div>';
+            resultDiv.innerHTML = createStatusMessage('info', 'Testing login...');
             
             if (!testUser) {
-                resultDiv.innerHTML = `
-                    <div class="status error">
-                        ❌ No test user available. Run registration test first.
-                    </div>
-                `;
+                resultDiv.innerHTML = createStatusMessage('error', 'No test user available. Run registration test first.');
                 return;
             }
             
@@ -237,98 +272,92 @@
                 
                 if (response.success) {
                     currentToken = response.token;
-                    resultDiv.innerHTML = `
-                        <div class="status success">
-                            ✅ Login successful!<br>
-                            User: ${response.user.username}<br>
-                            Token: ${response.token.substring(0, 20)}...
+                    resultDiv.innerHTML = createStatusMessage('success', `
+                        <div>Login successful!</div>
+                        <div class="mt-2 text-sm opacity-75">
+                            <div>User: <span class="font-mono">${response.user.username}</span></div>
+                            <div>Token: <span class="font-mono">${response.token.substring(0, 20)}...</span></div>
                         </div>
-                    `;
+                    `);
                     document.getElementById('verifyBtn').disabled = false;
                     document.getElementById('logoutBtn').disabled = false;
                 } else {
-                    resultDiv.innerHTML = `
-                        <div class="status error">
-                            ❌ Login failed<br>
-                            Errors: ${JSON.stringify(response.errors)}
+                    resultDiv.innerHTML = createStatusMessage('error', `
+                        <div>Login failed</div>
+                        <div class="mt-2 text-sm">
+                            <div>Errors: <span class="font-mono">${JSON.stringify(response.errors)}</span></div>
                         </div>
-                    `;
+                    `);
                 }
             } catch (error) {
-                resultDiv.innerHTML = `
-                    <div class="status error">
-                        ❌ Login error<br>
-                        Error: ${error.message}
+                resultDiv.innerHTML = createStatusMessage('error', `
+                    <div>Login error</div>
+                    <div class="mt-2 text-sm">
+                        <div>Error: <span class="font-mono">${error.message}</span></div>
                     </div>
-                `;
+                `);
             }
         }
 
         // Test token verification
         async function testTokenVerification() {
             const resultDiv = document.getElementById('verificationResult');
-            resultDiv.innerHTML = '<div class="status info">Testing token verification...</div>';
+            resultDiv.innerHTML = createStatusMessage('info', 'Testing token verification...');
             
             if (!currentToken) {
-                resultDiv.innerHTML = `
-                    <div class="status error">
-                        ❌ No token available. Login or register first.
-                    </div>
-                `;
+                resultDiv.innerHTML = createStatusMessage('error', 'No token available. Login or register first.');
                 return;
             }
             
             try {
                 const response = await api.verifyToken();
                 if (response.success) {
-                    resultDiv.innerHTML = `
-                        <div class="status success">
-                            ✅ Token verification successful!<br>
-                            User: ${response.user.username}<br>
-                            Email: ${response.user.email}
+                    resultDiv.innerHTML = createStatusMessage('success', `
+                        <div>Token verification successful!</div>
+                        <div class="mt-2 text-sm opacity-75">
+                            <div>User: <span class="font-mono">${response.user.username}</span></div>
+                            <div>Email: <span class="font-mono">${response.user.email}</span></div>
                         </div>
-                    `;
+                    `);
                 } else {
-                    resultDiv.innerHTML = `
-                        <div class="status error">
-                            ❌ Token verification failed<br>
-                            Response: ${JSON.stringify(response)}
+                    resultDiv.innerHTML = createStatusMessage('error', `
+                        <div>Token verification failed</div>
+                        <div class="mt-2 text-sm">
+                            <div>Response: <span class="font-mono">${JSON.stringify(response)}</span></div>
                         </div>
-                    `;
+                    `);
                 }
             } catch (error) {
-                resultDiv.innerHTML = `
-                    <div class="status error">
-                        ❌ Token verification error<br>
-                        Error: ${error.message}
+                resultDiv.innerHTML = createStatusMessage('error', `
+                    <div>Token verification error</div>
+                    <div class="mt-2 text-sm">
+                        <div>Error: <span class="font-mono">${error.message}</span></div>
                     </div>
-                `;
+                `);
             }
         }
 
         // Test logout
         async function testLogout() {
             const resultDiv = document.getElementById('logoutResult');
-            resultDiv.innerHTML = '<div class="status info">Testing logout...</div>';
+            resultDiv.innerHTML = createStatusMessage('info', 'Testing logout...');
             
             try {
                 await api.logout();
                 currentToken = null;
-                resultDiv.innerHTML = `
-                    <div class="status success">
-                        ✅ Logout successful!<br>
-                        Token cleared from storage.
-                    </div>
-                `;
+                resultDiv.innerHTML = createStatusMessage('success', `
+                    <div>Logout successful!</div>
+                    <div class="mt-2 text-sm opacity-75">Token cleared from storage.</div>
+                `);
                 document.getElementById('verifyBtn').disabled = true;
                 document.getElementById('logoutBtn').disabled = true;
             } catch (error) {
-                resultDiv.innerHTML = `
-                    <div class="status error">
-                        ❌ Logout error<br>
-                        Error: ${error.message}
+                resultDiv.innerHTML = createStatusMessage('error', `
+                    <div>Logout error</div>
+                    <div class="mt-2 text-sm">
+                        <div>Error: <span class="font-mono">${error.message}</span></div>
                     </div>
-                `;
+                `);
             }
         }
 

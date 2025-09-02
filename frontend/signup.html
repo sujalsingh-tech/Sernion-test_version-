@@ -4,295 +4,259 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sign Up</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <!-- Add Font Awesome for eye icon -->
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;                  
-    }
-    body {
-      background-color: #f4f4f4;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-    .container {
-      background-color: #fff;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      max-width: 420px;
+    /* Custom styles for proper eye icon positioning */
+    .input-container {
+      position: relative;
       width: 100%;
     }
-    h2 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-    .sub-text {
-      text-align: center;
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 30px;
-    }
-    .form-group {
-      margin-bottom: 18px;
-      position: relative;
-    }
-    .form-group label {
-      font-size: 14px;
-      margin-bottom: 6px;
-      display: block;
-    }
-    .input-icon {
-      display: flex;
-      align-items: center;
-      background-color: #f1f1f1;
-      padding: 10px;
-      border-radius: 6px;
-      position: relative;
-    }
-    .input-icon i.eye-btn {
-      margin-left: auto;
-      margin-right: 0;
-      font-size: 18px;
-      color: #888;
-      cursor: pointer;
+    .eye-icon {
       position: absolute;
       right: 12px;
       top: 50%;
       transform: translateY(-50%);
-      z-index: 2;
-    }
-    .input-icon input {
-      border: none;
-      background: transparent;
-      outline: none;
-      width: 100%;
-      font-size: 14px;
-    }
-    .primary-btn {
-      width: 100%;
-      padding: 12px;
-      background-color: #000;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      margin-top: 10px;
+      z-index: 10;
       cursor: pointer;
-      text-align: center;
-      display: block;
-      text-decoration: none;
-    }
-    .divider {
-      text-align: center;
-      margin: 20px 0;
-      color: #888;
-      font-size: 14px;
-    }
-    .social-btn {
-      border: 1px solid #ccc;
-      border-radius: 20px;
-      padding: 10px;
-      width: 100%;
+      height: 20px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      cursor: pointer;
-      background-color: #fff;
+      pointer-events: auto;
     }
-    .social-btn img {
-      width: 25px;
-      height: 25px;
-      margin-right: 10px;
-      border-radius: 50%;
+    .error-message {
+      margin-top: 4px;
+      color: #ef4444;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
     }
-    .bottom-text {
-      text-align: center;
-      font-size: 13px;
-      margin-top: 20px;
+    .error-message:before {
+      content: "\f06a";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      margin-right: 0.25rem;
+      font-size: 0.75rem;
     }
-    .bottom-text a {
-      font-weight: bold;
-      text-decoration: none;
-      color: #000;
+    .shake-animation {
+      animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
     }
-    .terms {
-      text-align: center;
-      font-size: 11px;
-      color: #555;
-      margin-top: 25px;
-    }
-    .terms a {
-      font-weight: bold;
-      color: #000;
-      text-decoration: none;
-    }
-
-    /* ✅ Message styling - now left aligned */
-    #matchMessage {
-      font-size: 13px;
-      margin-top: 6px;
-      display: none;
-      text-align: left;  /* Left aligned */
-    }
-    #matchMessage {
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 5px;
-      text-align: center;
-      display: none;
-    }
-    #matchMessage.success {
-      background-color: #d4edda;
-      border: 1px solid #c3e6cb;
-      color: #155724;
-    }
-    #matchMessage.error {
-      background-color: #f8d7da;
-      border: 1px solid #f5c6cb;
-      color: #721c24;
+    
+    @keyframes shake {
+      10%, 90% { transform: translate3d(-1px, 0, 0); }
+      20%, 80% { transform: translate3d(2px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
+      40%, 60% { transform: translate3d(3px, 0, 0); }
     }
   </style>
 </head>
-<body>
-  <div class="container">
-    <h2>Create Account</h2>
-    <p class="sub-text">Sign up to get started</p>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen font-['Inter',sans-serif]">
+  <div class="bg-white p-10 rounded-xl shadow-lg max-w-md w-full mx-4">
+    <h2 class="text-2xl font-semibold text-center mb-2">Welcome Back</h2>
+    <p class="text-center text-sm text-gray-600 mb-6">Sign into your account to continue</p>
 
-    <form id="signupForm">
-      <div class="form-group">
-        <label>Username</label>
-        <div class="input-icon">
-          <input type="text" name="username" placeholder="Enter your username" required />
+    <div class="space-y-5">
+      <!-- Full name field -->
+      <div>
+        <label class="block text-sm mb-1.5">Full name <span class="text-red-500">*</span></label>
+        <div class="input-container">
+          <input type="text" id="fullName" placeholder="Enter your full name" 
+            class="w-full border bg-gray-100 rounded-md outline-none py-2.5 px-3 text-sm transition" />
         </div>
+        <div id="fullNameError" class="error-message hidden"></div>
       </div>
-      <div class="form-group">
-        <label>Full name</label>
-        <div class="input-icon">
-          <input type="text" name="full_name" placeholder="Enter your full name" required />
+      
+      <!-- Email field -->
+      <div>
+        <label class="block text-sm mb-1.5">Email <span class="text-red-500">*</span></label>
+        <div class="input-container">
+          <input type="email" id="email" placeholder="Enter your email" 
+            class="w-full border bg-gray-100 rounded-md outline-none py-2.5 px-3 text-sm transition" />
         </div>
+        <div id="emailError" class="error-message hidden"></div>
       </div>
-      <div class="form-group">
-        <label>Email</label>
-        <div class="input-icon">
-          <input type="email" name="email" placeholder="Enter your email" required />
+      
+      <!-- Password field -->
+      <div>
+        <label class="block text-sm mb-1.5">Password <span class="text-red-500">*</span></label>
+        <div class="input-container">
+          <input type="password" id="password" placeholder="Enter your password"
+            class="w-full border bg-gray-100 rounded-md outline-none py-2.5 px-3 text-sm transition" />
+          <div class="eye-icon" id="togglePassword">
+            <i class="fa-solid fa-eye-slash text-gray-500"></i>
+          </div>
         </div>
+        <div id="passwordError" class="error-message hidden"></div>
       </div>
-      <div class="form-group">
-        <label>Password</label>
-        <div class="input-icon">
-          <input type="password" name="password" placeholder="Enter your password" required id="password" />
-          <i class="fa-solid fa-eye-slash eye-btn" id="togglePassword"></i>
+      
+      <!-- Confirm password field -->
+      <div>
+        <label class="block text-sm mb-1.5">Confirm password <span class="text-red-500">*</span></label>
+        <div class="input-container">
+          <input type="password" id="confirmPassword" placeholder="Re-enter password"
+            class="w-full border bg-gray-100 rounded-md outline-none py-2.5 px-3 text-sm transition" />
+          <div class="eye-icon" id="toggleConfirmPassword">
+            <i class="fa-solid fa-eye-slash text-gray-500"></i>
+          </div>
         </div>
+        <div id="confirmPasswordError" class="error-message hidden"></div>
       </div>
-      <div class="form-group">
-        <label>Confirm password</label>
-        <div class="input-icon">
-          <input type="password" name="password_confirm" placeholder="Re-enter password" required id="confirmPassword" />
-          <i class="fa-solid fa-eye-slash eye-btn" id="toggleConfirmPassword"></i>
-        </div>
+      
+      <!-- Continue button -->
+      <button id="continueBtn" 
+        class="w-full bg-black text-white py-3 rounded-md text-center block text-base font-medium hover:bg-gray-800 transition mt-2">
+        Continue
+      </button>
+      
+      <!-- OR divider -->
+      <div class="relative flex items-center my-5">
+        <div class="flex-grow border-t border-gray-300"></div>
+        <span class="flex-shrink mx-4 text-gray-500 text-sm">OR</span>
+        <div class="flex-grow border-t border-gray-300"></div>
       </div>
-
-      <!-- ✅ Match message -->
-      <p id="matchMessage"></p>
-
-      <button type="submit" class="primary-btn">Continue</button>
-    </form>
-    
-    <div class="divider">OR</div>
-    <div class="social-btn">
-      <img src="src/Google_Icons-09-512.png" alt="Google logo" style="width:30px;height:30px;">
-      Continue with Google
-    </div>
-
-    <div class="bottom-text">
-      Already have an account? <a href="login.html">Log in</a>
-    </div>
-    <div class="terms">
-      By continuing, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+      
+      <!-- Google button -->
+      <a href="/accounts/google/login/" class="w-full border border-gray-300 rounded-full py-2.5 px-3 flex items-center justify-center hover:bg-gray-50 transition">
+        <img src="src/png/Google.png" alt="Google logo" class="w-[30px] h-[30px] mr-2 rounded-full">
+        <span class="text-sm">Continue with Google</span>
+      </a>
+      
+      <!-- Login link -->
+      <div class="text-center text-sm mt-5">
+        Already have an account? 
+        <a href="login.html" class="font-semibold text-black hover:underline">Log in</a>
+      </div>
+      
+      <!-- Terms text -->
+      <div class="text-center text-xs text-gray-500 mt-6">
+        By continuing, you agree to our 
+        <a href="#" class="font-semibold text-black hover:underline">Terms of Service</a> and 
+        <a href="#" class="font-semibold text-black hover:underline">Privacy Policy</a>
+      </div>
     </div>
   </div>
 
-  <!-- Include API Client -->
-  <script src="js/api.js"></script>
-  
   <script>
-    // Password field toggle
+    // Get all elements
+    const fullNameInput = document.getElementById('fullName');
+    const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+    
+    const fullNameError = document.getElementById('fullNameError');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    const confirmPasswordError = document.getElementById('confirmPasswordError');
+    
+    const continueBtn = document.getElementById('continueBtn');
+
+    // Password field toggle
     const togglePassword = document.getElementById('togglePassword');
     togglePassword.addEventListener('click', function () {
       const type = passwordInput.type === 'password' ? 'text' : 'password';
       passwordInput.type = type;
-      this.classList.toggle('fa-eye');
-      this.classList.toggle('fa-eye-slash');
+      const icon = this.querySelector('i');
+      icon.classList.toggle('fa-eye');
+      icon.classList.toggle('fa-eye-slash');
     });
 
     // Confirm password field toggle
-    const confirmPasswordInput = document.getElementById('confirmPassword');
     const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
     toggleConfirmPassword.addEventListener('click', function () {
       const type = confirmPasswordInput.type === 'password' ? 'text' : 'password';
       confirmPasswordInput.type = type;
-      this.classList.toggle('fa-eye');
-      this.classList.toggle('fa-eye-slash');
+      const icon = this.querySelector('i');
+      icon.classList.toggle('fa-eye');
+      icon.classList.toggle('fa-eye-slash');
     });
 
-    // Form submission with API integration
-    const signupForm = document.getElementById('signupForm');
-    const matchMessage = document.getElementById('matchMessage');
+    // Helper function to add error state to input
+    function setInputError(input, errorElement, message) {
+      input.classList.add('border-red-500', 'shake-animation');
+      input.classList.remove('border-gray-200');
+      errorElement.textContent = message;
+      errorElement.classList.remove('hidden');
+      
+      // Remove the shake animation after it completes
+      setTimeout(() => {
+        input.classList.remove('shake-animation');
+      }, 820);
+    }
 
-    signupForm.addEventListener('submit', async function (e) {
+    // Helper function to remove error state from input
+    function clearInputError(input, errorElement) {
+      input.classList.remove('border-red-500');
+      input.classList.add('border-gray-200');
+      errorElement.classList.add('hidden');
+      errorElement.textContent = '';
+    }
+
+    // Validate email format
+    function isValidEmail(email) {
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    }
+
+    // Form submission validation
+    continueBtn.addEventListener('click', function (e) {
       e.preventDefault();
-
-      const formData = new FormData(signupForm);
-      const password = formData.get('password');
-      const passwordConfirm = formData.get('password_confirm');
-
-      // Check if passwords match
-      if (password !== passwordConfirm) {
-        matchMessage.style.display = "block";
-        matchMessage.textContent = "Passwords do not match ❌";
-        matchMessage.className = "error";
-        return;
+      
+      // Reset error states
+      clearInputError(fullNameInput, fullNameError);
+      clearInputError(emailInput, emailError);
+      clearInputError(passwordInput, passwordError);
+      clearInputError(confirmPasswordInput, confirmPasswordError);
+      
+      let hasErrors = false;
+      
+      // Validate full name
+      if (!fullNameInput.value.trim()) {
+        setInputError(fullNameInput, fullNameError, 'Full name is required');
+        hasErrors = true;
       }
-
-      // Show loading message
-      matchMessage.style.display = "block";
-      matchMessage.textContent = "Creating account...";
-      matchMessage.className = "success";
-
-      try {
-        // Call the API
-        const response = await api.register({
-          username: formData.get('username'),
-          email: formData.get('email'),
-          password: password,
-          password_confirm: passwordConfirm,
-          full_name: formData.get('full_name')
-        });
-
-        if (response.success) {
-          matchMessage.textContent = "Account created successfully! ✅ Redirecting...";
-          setTimeout(() => {
-            window.location.href = "dashboard.html";
-          }, 1000);
-        } else {
-          matchMessage.textContent = "Registration failed: " + (response.errors || 'Unknown error');
-          matchMessage.className = "error";
-        }
-      } catch (error) {
-        matchMessage.textContent = "Error: " + error.message;
-        matchMessage.className = "error";
+      
+      // Validate email
+      if (!emailInput.value.trim()) {
+        setInputError(emailInput, emailError, 'Email address is required');
+        hasErrors = true;
+      } else if (!isValidEmail(emailInput.value.trim())) {
+        setInputError(emailInput, emailError, 'Please enter a valid email address');
+        hasErrors = true;
+      }
+      
+      // Validate password
+      if (!passwordInput.value) {
+        setInputError(passwordInput, passwordError, 'Password is required');
+        hasErrors = true;
+      } else if (passwordInput.value.length < 6) {
+        setInputError(passwordInput, passwordError, 'Password must be at least 6 characters');
+        hasErrors = true;
+      }
+      
+      // Validate confirm password
+      if (!confirmPasswordInput.value) {
+        setInputError(confirmPasswordInput, confirmPasswordError, 'Please confirm your password');
+        hasErrors = true;
+      } else if (passwordInput.value !== confirmPasswordInput.value) {
+        setInputError(confirmPasswordInput, confirmPasswordError, 'Passwords do not match');
+        hasErrors = true;
+      }
+      
+      // If no errors, proceed to verification
+      if (!hasErrors) {
+        window.location.href = "verify.html";
       }
     });
+
+    // Input event listeners to clear errors on typing
+    fullNameInput.addEventListener('input', () => clearInputError(fullNameInput, fullNameError));
+    emailInput.addEventListener('input', () => clearInputError(emailInput, emailError));
+    passwordInput.addEventListener('input', () => clearInputError(passwordInput, passwordError));
+    confirmPasswordInput.addEventListener('input', () => clearInputError(confirmPasswordInput, confirmPasswordError));
   </script>
 </body>
 </html>

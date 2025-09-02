@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,8 +103,8 @@
       continueBtn.addEventListener('click', function() {
         if (checkInputsFilled()) {
           let code = [...inputs].map(i => i.value).join('');
-          if (code === '1234') {
-            window.location.href = 'dashboard.html';
+          if (code === '5678') {
+            window.location.href = 'verification2.html';
           } else {
             showErrorState('Invalid verification code. Please try again.');
           }
