@@ -85,13 +85,6 @@
         <button id="undoBtn" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-bold hover:bg-gray-300 transition-colors opacity-50 cursor-not-allowed" disabled>↶ Undo</button>
       </div>
 
-      <!-- URL Input -->
-      <div class="flex gap-2 justify-center mt-3">
-        <input id="urlInput" class="flex-1 max-w-md px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Paste image URL" />
-        <button id="addUrl" class="px-4 py-2 border border-blue-600 text-blue-600 bg-blue-50 rounded-lg font-bold hover:bg-blue-100 transition-colors">Add</button>
-      </div>
-
-      <div id="fileInfo" class="mt-2 text-center text-gray-500 text-sm">No image selected</div>
     </section>
 
     <!-- Right Sidebar -->
@@ -490,19 +483,6 @@ card.addEventListener('click', (e) => {
 fileInput.addEventListener('change', (e) => {
   if (e.target.files && e.target.files.length) {
     loadImageFile(e.target.files[0]);
-  }
-});
-
-// URL input
-document.getElementById('addUrl').addEventListener('click', () => {
-  const url = urlInput.value.trim();
-  if (url) {
-    if (hint) {
-      hint.textContent = 'Loading from URL...';
-      hint.className = 'text-blue-600 text-center p-5 text-base font-semibold';
-    }
-    createImageElement(url, 'Image from URL');
-    urlInput.value = '';
   }
 });
 
